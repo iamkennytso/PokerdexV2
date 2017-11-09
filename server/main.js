@@ -3,7 +3,7 @@ const express = require('express');
 // const request = require('request')
 let app = express();
 let port = process.env.PORT || 1203
-// let apiCall = require('./apiHelper')
+let apiCall = require('./apiHelper')
 
 
 app.use(express.static(__dirname + '/../public'));
@@ -18,3 +18,5 @@ app.listen(port, function() {
 //     res.send(body)
 //   });
 // })
+
+app.get('/testData', apiCall.testData)

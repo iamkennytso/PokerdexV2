@@ -993,23 +993,89 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
-      obj: { text: 'hello' }
+      pokemon: { name: 'Mehchu', type1: 'meh', type2: 'meh' }
     };
     return _this;
   }
 
   _createClass(App, [{
     key: 'componentDidMount',
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      _axios2.default.get('/testData').then(function (response) {
+        console.log(response);
+        _this2.setState({
+          pokemon: response.data
+        });
+      });
+    }
   }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         { id: 'pokemonPage' },
-        _react2.default.createElement(_blink2.default, { type: this.state.Pokemonblink }),
+        _react2.default.createElement(_blink2.default, { type: this.state.pokemon.blink }),
         _react2.default.createElement('img', { id: 'pokedex', src: 'imgs/pokedex.png', alt: 'pokedex' }),
-        _react2.default.createElement('div', { id: 'pokeData' }),
+        _react2.default.createElement(
+          'div',
+          { id: 'pokeData' },
+          'ID: ',
+          this.state.pokemon.ID,
+          ' Name: ',
+          this.state.pokemon.name,
+          '  ',
+          _react2.default.createElement('br', null),
+          'Hgt: ',
+          this.state.pokemon.height,
+          ' m Wgt: ',
+          this.state.pokemon.weight,
+          ' kg ',
+          _react2.default.createElement('br', null),
+          'Type 1: ',
+          this.state.pokemon.type1,
+          '  ',
+          _react2.default.createElement('br', null),
+          'Type 2: ',
+          !this.state.pokemon.type2 ? null : this.state.pokemon.type2,
+          '  ',
+          _react2.default.createElement('br', null),
+          'HP: \xA0\xA0\xA0\xA0\xA0\xA0',
+          this.state.pokemon.hp,
+          '  ',
+          _react2.default.createElement('br', null),
+          'Speed: \xA0\xA0\xA0',
+          this.state.pokemon.speed,
+          ' ',
+          _react2.default.createElement('br', null),
+          'Attack: \xA0\xA0',
+          this.state.pokemon.attack,
+          '  ',
+          _react2.default.createElement('br', null),
+          'Defense: \xA0',
+          this.state.pokemon.defense,
+          '  ',
+          _react2.default.createElement('br', null),
+          'Spec Atk: ',
+          this.state.pokemon['special-attack'],
+          '  ',
+          _react2.default.createElement('br', null),
+          'Spec Def: ',
+          this.state.pokemon['special-defense'],
+          '  ',
+          _react2.default.createElement('br', null),
+          'Abilities: ',
+          this.state.pokemon.abl1,
+          ' ',
+          this.state.pokemon.abl2,
+          ' ',
+          this.state.pokemon.abl3
+        ),
+        _react2.default.createElement('img', {
+          id: 'pokeSprite',
+          src: this.state.pokemon.sprite,
+          alt: 'Sprite of Pokemon' }),
         _react2.default.createElement(_changeType2.default, { func: this.changeType1 }),
         _react2.default.createElement(_changeType4.default, { func: this.changeType2 })
       );
