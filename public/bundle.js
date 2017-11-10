@@ -1043,6 +1043,7 @@ var App = function (_React$Component) {
       var _this3 = this;
 
       e.preventDefault();
+      this.setState({ pokemon: { sprite: "imgs/loading.gif" } });
       _axios2.default.post('/search', { searchTerm: this.state.searchTerm }).then(function (response) {
         _this3.setState({ pokemon: response.data });
       });

@@ -46,6 +46,7 @@ class App extends React.Component {
   }
   handleSearch(e) {
     e.preventDefault();
+    this.setState({ pokemon: {sprite: "imgs/loading.gif"} })
     axios.post('/search', { searchTerm: this.state.searchTerm })
       .then(response => {
         this.setState({ pokemon: response.data })
