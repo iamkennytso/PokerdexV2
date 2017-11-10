@@ -1,3 +1,4 @@
+const axios  = require ('axios');
 const testData = require('./testData.js')
 
 const formatData = (data) => {
@@ -20,6 +21,11 @@ const formatData = (data) => {
 
 exports.testData = (req, res) => {
   res.send(formatData(testData))
+}
+
+exports.searchPoke = (req, res) => {
+  console.log(req)
+  // axios.get(`http://pokeapi.co/api/v2/pokemon/${id}`)
 }
 // exports.pokeInfo = (id, cb) => {
 //   console.log('Entered API Call')

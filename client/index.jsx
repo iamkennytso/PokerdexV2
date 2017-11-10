@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import axios from 'axios';
-// import Chart from './chart.jsx'
+import Chart from './chart.jsx'
 import Blink from './blink.jsx'
 import ChangeType1 from './changeType1.jsx'
 import ChangeType2 from './changeType2.jsx'
@@ -31,18 +31,18 @@ class App extends React.Component {
         <Blink type={this.state.pokemon.blink} />
         <img id="pokedex" src = "imgs/pokedex.png" alt="pokedex"></img>  
         <div id="pokeData">
-          ID: {this.state.pokemon.ID} Name: {this.state.pokemon.name}  <br></br>
+          ID: {this.state.pokemon.ID} Name: {this.state.pokemon.name}  <br/>
           Hgt: {this.state.pokemon.height} m  
-          Wgt: {this.state.pokemon.weight} kg <br></br>
-          Type 1: {this.state.pokemon.type1}  <br></br>
-          Type 2: {!this.state.pokemon.type2 ? null : this.state.pokemon.type2}  <br></br>
-          {/* <Chart stats={this.state}/> <br></br> */}
-          HP: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.pokemon.hp}  <br></br>
-          Speed: &nbsp;&nbsp;&nbsp;{this.state.pokemon.speed} <br></br>
-          Attack: &nbsp;&nbsp;{this.state.pokemon.attack}  <br></br>
-          Defense: &nbsp;{this.state.pokemon.defense}  <br></br>
-          Spec Atk: {this.state.pokemon['special-attack']}  <br></br>
-          Spec Def: {this.state.pokemon['special-defense']}  <br></br>
+          Wgt: {this.state.pokemon.weight} kg <br/>
+          Type 1: {this.state.pokemon.type1}  <br/>
+          Type 2: {!this.state.pokemon.type2 ? null : this.state.pokemon.type2}  <br/>
+          <Chart stats={this.state.pokemon}/> <br/>
+          HP: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.pokemon.hp}  <br/>
+          Speed: &nbsp;&nbsp;&nbsp;{this.state.pokemon.speed} <br/>
+          Attack: &nbsp;&nbsp;{this.state.pokemon.attack}  <br/>
+          Defense: &nbsp;{this.state.pokemon.defense}  <br/>
+          Spec Atk: {this.state.pokemon['special-attack']}  <br/>
+          Spec Def: {this.state.pokemon['special-defense']}  <br/>
           Abilities: {this.state.pokemon.abl1} {this.state.pokemon.abl2} {this.state.pokemon.abl3}
         </div>
         <img 
