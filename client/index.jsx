@@ -25,18 +25,15 @@ class App extends React.Component {
   componentDidMount() {
     axios.get('/testData')
     .then((response)=> {
-      console.log(response)
       this.setState({
         pokemon: response.data,
         blink: response.data.type1
       })
     })
   }
-
   onChangeSearchTerm(e) {
     this.setState({ searchTerm: e.target.value })
   }
-
   changeType1 () {
     this.setState({
       blink: this.state.pokemon.type1
@@ -47,7 +44,6 @@ class App extends React.Component {
       blink: this.state.pokemon.type2
     }) 
   }
-
   handleSearch(e) {
     e.preventDefault();
     axios.post('/search', { searchTerm: this.state.searchTerm })
@@ -55,7 +51,6 @@ class App extends React.Component {
         this.setState({ pokemon: response.data })
       })
   }
-
   render () {
     return (
       <div id="pokemonPage">

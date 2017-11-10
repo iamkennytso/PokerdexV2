@@ -1012,7 +1012,6 @@ var App = function (_React$Component) {
       var _this2 = this;
 
       _axios2.default.get('/testData').then(function (response) {
-        console.log(response);
         _this2.setState({
           pokemon: response.data,
           blink: response.data.type1
