@@ -996,9 +996,13 @@ var App = function (_React$Component) {
 
     _this.state = {
       pokemon: { name: 'Mehchu', type1: 'meh', type2: 'meh' },
-      searchTerm: ''
+      searchTerm: '',
+      blink: ''
     };
     _this.onChangeSearchTerm = _this.onChangeSearchTerm.bind(_this);
+    _this.handleSearch = _this.handleSearch.bind(_this);
+    _this.changeType1 = _this.changeType1.bind(_this);
+    _this.changeType2 = _this.changeType2.bind(_this);
     return _this;
   }
 
@@ -1010,7 +1014,8 @@ var App = function (_React$Component) {
       _axios2.default.get('/testData').then(function (response) {
         console.log(response);
         _this2.setState({
-          pokemon: response.data
+          pokemon: response.data,
+          blink: response.data.type1
         });
       });
     }
@@ -1020,12 +1025,36 @@ var App = function (_React$Component) {
       this.setState({ searchTerm: e.target.value });
     }
   }, {
+    key: 'changeType1',
+    value: function changeType1() {
+      this.setState({
+        blink: this.state.pokemon.type1
+      });
+    }
+  }, {
+    key: 'changeType2',
+    value: function changeType2() {
+      this.setState({
+        blink: this.state.pokemon.type2
+      });
+    }
+  }, {
+    key: 'handleSearch',
+    value: function handleSearch(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      _axios2.default.post('/search', { searchTerm: this.state.searchTerm }).then(function (response) {
+        _this3.setState({ pokemon: response.data });
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         { id: 'pokemonPage' },
-        _react2.default.createElement(_blink2.default, { type: this.state.pokemon.blink }),
+        _react2.default.createElement(_blink2.default, { type: this.state.blink }),
         _react2.default.createElement('img', { id: 'pokedex', src: 'imgs/pokedex.png', alt: 'pokedex' }),
         _react2.default.createElement(
           'div',
@@ -1076,13 +1105,7 @@ var App = function (_React$Component) {
           'Spec Def: ',
           this.state.pokemon['special-defense'],
           '  ',
-          _react2.default.createElement('br', null),
-          'Abilities: ',
-          this.state.pokemon.abl1,
-          ' ',
-          this.state.pokemon.abl2,
-          ' ',
-          this.state.pokemon.abl3
+          _react2.default.createElement('br', null)
         ),
         _react2.default.createElement(
           'div',

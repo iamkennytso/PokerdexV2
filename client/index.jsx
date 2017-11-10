@@ -12,10 +12,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemon : {name:'Mehchu', type1:'meh', type2: 'meh'},
-      searchTerm: ''
+      pokemon: {name:'Mehchu', type1:'meh', type2: 'meh'},
+      searchTerm: '',
+      blink: ''
     }
-    this.onChangeSearchTerm = this.onChangeSearchTerm.bind(this)
+    this.onChangeSearchTerm = this.onChangeSearchTerm.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.changeType1 = this.changeType1.bind(this)
+    this.changeType2 = this.changeType2.bind(this)
   }
 
   componentDidMount() {
@@ -23,7 +27,8 @@ class App extends React.Component {
     .then((response)=> {
       console.log(response)
       this.setState({
-        pokemon: response.data
+        pokemon: response.data,
+        blink: response.data.type1
       })
     })
   }
@@ -32,10 +37,29 @@ class App extends React.Component {
     this.setState({ searchTerm: e.target.value })
   }
 
+  changeType1 () {
+    this.setState({
+      blink: this.state.pokemon.type1
+    })
+  }
+  changeType2 () {
+    this.setState({
+      blink: this.state.pokemon.type2
+    }) 
+  }
+
+  handleSearch(e) {
+    e.preventDefault();
+    axios.post('/search', { searchTerm: this.state.searchTerm })
+      .then(response => {
+        this.setState({ pokemon: response.data })
+      })
+  }
+
   render () {
     return (
       <div id="pokemonPage">
-        <Blink type={this.state.pokemon.blink} />
+        <Blink type={this.state.blink} />
         <img id="pokedex" src = "imgs/pokedex.png" alt="pokedex"></img>  
         <div id="pokeData">
           ID: {this.state.pokemon.ID} Name: {this.state.pokemon.name}  <br/>
@@ -50,7 +74,7 @@ class App extends React.Component {
           Defense: &nbsp;{this.state.pokemon.defense}  <br/>
           Spec Atk: {this.state.pokemon['special-attack']}  <br/>
           Spec Def: {this.state.pokemon['special-defense']}  <br/>
-          Abilities: {this.state.pokemon.abl1} {this.state.pokemon.abl2} {this.state.pokemon.abl3}
+          {/* Abilities: {this.state.pokemon.abl1} {this.state.pokemon.abl2} {this.state.pokemon.abl3} */}
         </div>
         <div id="searchFormDiv">
           <form id="searchForm" onSubmit = {this.handleSearch}>
