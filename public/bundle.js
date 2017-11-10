@@ -995,8 +995,10 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
-      pokemon: { name: 'Mehchu', type1: 'meh', type2: 'meh' }
+      pokemon: { name: 'Mehchu', type1: 'meh', type2: 'meh' },
+      searchTerm: ''
     };
+    _this.onChangeSearchTerm = _this.onChangeSearchTerm.bind(_this);
     return _this;
   }
 
@@ -1011,6 +1013,11 @@ var App = function (_React$Component) {
           pokemon: response.data
         });
       });
+    }
+  }, {
+    key: 'onChangeSearchTerm',
+    value: function onChangeSearchTerm(e) {
+      this.setState({ searchTerm: e.target.value });
     }
   }, {
     key: 'render',
@@ -1076,6 +1083,15 @@ var App = function (_React$Component) {
           this.state.pokemon.abl2,
           ' ',
           this.state.pokemon.abl3
+        ),
+        _react2.default.createElement(
+          'div',
+          { id: 'searchFormDiv' },
+          _react2.default.createElement(
+            'form',
+            { id: 'searchForm', onSubmit: this.handleSearch },
+            _react2.default.createElement('input', { type: 'text', id: 'searchTerm', onChange: this.onChangeSearchTerm, placeholder: 'Pikachu' })
+          )
         ),
         _react2.default.createElement('img', {
           id: 'pokeSprite',

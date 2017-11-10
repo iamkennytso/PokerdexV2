@@ -13,8 +13,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       pokemon : {name:'Mehchu', type1:'meh', type2: 'meh'},
+      searchTerm: ''
     }
+    this.onChangeSearchTerm = this.onChangeSearchTerm.bind(this)
   }
+
   componentDidMount() {
     axios.get('/testData')
     .then((response)=> {
@@ -23,6 +26,10 @@ class App extends React.Component {
         pokemon: response.data
       })
     })
+  }
+
+  onChangeSearchTerm(e) {
+    this.setState({ searchTerm: e.target.value })
   }
 
   render () {
@@ -44,6 +51,11 @@ class App extends React.Component {
           Spec Atk: {this.state.pokemon['special-attack']}  <br/>
           Spec Def: {this.state.pokemon['special-defense']}  <br/>
           Abilities: {this.state.pokemon.abl1} {this.state.pokemon.abl2} {this.state.pokemon.abl3}
+        </div>
+        <div id="searchFormDiv">
+          <form id="searchForm" onSubmit = {this.handleSearch}>
+            <input type="text" id="searchTerm" onChange={this.onChangeSearchTerm} placeholder="Pikachu" />
+          </form>
         </div>
         <img 
           id="pokeSprite" 
