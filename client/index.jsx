@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemon: {name:'Mehchu', type1:'meh', type2: 'meh'},
+      pokemon: {name:'Hello World', type1:'meh', type2: 'meh'},
       searchTerm: '',
       blink: ''
     }
