@@ -5,8 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "watch": "webpack -d --watch",
-    "start": "node server/main.js",
-    "compile": "webpack && node server/main.js"
+    "start": "webpack && node server/main.js",
   },
   "author": "Kenneth Tso | iamkennytso@gmail.com",
   "repository": "https://github.com/iamkennytso/PokerdexV2",
