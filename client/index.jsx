@@ -77,6 +77,12 @@ class App extends React.Component {
             <input type="text" id="searchTerm" onChange={this.onChangeSearchTerm} placeholder="Pikachu" />
           </form>
         </div>
+        <div id="bouncingPokeball">
+          <img 
+            id="bouncingPokeball"
+            src="imgs/bounce.gif"
+            alt="search" />
+        </div>
         <img 
           id="pokeSprite" 
           src={this.state.pokemon.sprite} 
