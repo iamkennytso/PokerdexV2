@@ -12,8 +12,8 @@
   grid-row: 2/7;
 }
 #bouncingPokeball{
-  height: 30px;
-  width: 30px;
+  height: 42px;
+  width: 56px;
   grid-column: 4/5;
   grid-row: 7/8;
   margin-top: 110px;
