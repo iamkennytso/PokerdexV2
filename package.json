@@ -1,7 +1,7 @@
 {
   "name": "PokerDexerV2",
   "version": "1.0.0",
-  "description": "Website to view information about your favorite Pokemon!",
+  "description": "Application to view information about your favorite Pokemon!",
   "main": "server/index.js",
   "scripts": {
     "watch": "webpack -d --watch",
