@@ -37975,7 +37975,13 @@ var App = function (_React$Component) {
           'Spec Def: ',
           this.state.pokemon['special-defense'],
           '  ',
-          _react2.default.createElement('br', null)
+          _react2.default.createElement('br', null),
+          'Abilities: ',
+          this.state.pokemon.abl1Name,
+          ' ',
+          this.state.pokemon.abl2Name,
+          ' ',
+          this.state.pokemon.abl3Name
         ),
         _react2.default.createElement(
           'div',

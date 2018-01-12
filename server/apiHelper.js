@@ -4,18 +4,25 @@ const pokeNumber = require('./pokeNumber.js')
 
 const formatData = (data) => {
   const obj = {};
+  let abilCount = 0
   obj.name = data.name.replace(/\w\S*/g, (txt)=>{return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()});;
   obj.ID = data.id;
   obj.sprite = data.sprites.front_default
-  if (data.sprites.front_female !== null) obj.sprite2 = data.sprites.front_female
+  if (data.sprites.front_female) obj.sprite2 = data.sprites.front_female
   obj.height = (data.height / 10)
   obj.weight = (data.weight / 10)
   obj.type1 = data.types[0].type.name.toUpperCase()
-  if (data.types[1] !== undefined) obj.type2=data.types[1].type.name.toUpperCase()
+  if (data.types[1]) obj.type2=data.types[1].type.name.toUpperCase()
   data.stats.map( (x)=> {
     name = x.stat.name
     obj[name] = x.base_stat;
   })
+  if(data.abilities[0]){
+      data.abilities.forEach( (abil) => {
+      var temp = `abl${++abilCount}Name`
+      obj[temp] = abil.ability.name.toUpperCase()
+    })
+  }
   return obj;
 }
 
@@ -35,14 +42,7 @@ exports.searchPoke = (req, res) => {
       console.log(response.data.name)
       res.send(formatData(response.data))
   })
-
 }
-
-//     body.abilities.forEach( (abil) => {
-//       var temp = `ability${abilCount}Name`
-//       obj[temp] = abil.ability.name
-//       abilCount++
-//     })
 
 // let pokeAbilObj = pokeAbilInfo(body.abilities)
 // async problems, outta scope

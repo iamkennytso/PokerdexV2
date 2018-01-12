@@ -70,7 +70,7 @@ class App extends React.Component {
           Defense: &nbsp;{this.state.pokemon.defense}  <br/>
           Spec Atk: {this.state.pokemon['special-attack']}  <br/>
           Spec Def: {this.state.pokemon['special-defense']}  <br/>
-          {/* Abilities: {this.state.pokemon.abl1} {this.state.pokemon.abl2} {this.state.pokemon.abl3} */}
+          Abilities: {this.state.pokemon.abl1Name} {this.state.pokemon.abl2Name} {this.state.pokemon.abl3Name}
         </div>
         <div id="searchFormDiv">
           <form id="searchForm" onSubmit = {this.handleSearch}>
