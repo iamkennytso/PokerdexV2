@@ -32,7 +32,9 @@ exports.testData = (req, res) => {
 }
 exports.testData2 = (req, res) => {
   const obj = {};
-  obj.flavor
+  obj.flavor = testData2.flavor_text_entries.filter(text => text.language.name === 'en')
+  obj.genus = testData2.genera.filter(poke => poke.language.name === 'en')
+  res.send(obj)
 }
 exports.searchPoke = (req, res) => {
   let searchID;
@@ -48,41 +50,9 @@ exports.searchPoke = (req, res) => {
   })
 }
 
-exports.flavorPoke = (req, res) => {
-  axios.get(`http://pokeapi.co/api/v2/pokemon-species/${searchID}`)
-    .then(payload => {
+// exports.flavorPoke = (req, res) => {
+//   axios.get(`http://pokeapi.co/api/v2/pokemon-species/${searchID}`)
+//     .then(payload => {
 
-    })
-}
-// let pokeAbilObj = pokeAbilInfo(body.abilities)
-// async problems, outta scope
-// pokeAbilInfo = (abil, cb) => {
-//   let abilityX = 0;
-//   obj = {}
-//   abil.forEach( (x) => {
-//     var abilityOptions = {
-//       "uri":x.ability.url,
-//       "method": "GET",
-//       "headers": {
-//         "content-type": "application/json",
-//         "cache-control": "no-cache",
-//         "postman-token": "405a8e18-63f9-3fdc-f9c7-8f630445da85"
-//       },
-//       "json":true
-//     }
-//     request(abilityOptions, (err, res, body) => {
-//       var temp = `ability${abilityX}Name`
-//       console.log(`ability${abilityX}Name`)
-//       obj[temp] = body.name;
-//       console.log(body.name)
-//       temp = `ability${abilityX}Descript`
-//       console.log(`ability${abilityX}Descript`)
-//       obj[temp] = body.effect_entries[0].short_effect
-//       console.log(body.effect_entries[0].short_effect)
-//       abilityX++
 //     })
-//   })
-//   console.log('inner', obj)
-//   return obj;
 // }
-

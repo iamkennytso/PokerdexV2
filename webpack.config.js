@@ -1,7 +1,11 @@
+var path = require('path');
 var webpack = require('webpack');
 module.exports = {
   entry: './client/index.jsx',
-  output: './publc/bundle.js',
+  output: {
+      path: path.resolve(__dirname, 'public'),		
+      filename: 'bundle.js'		
+  },
   module: {
     loaders: [
       { 

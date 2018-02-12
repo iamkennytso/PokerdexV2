@@ -1,4 +1,4 @@
-{
+var obj = {
     "capture_rate": 190,
     "habitat": {
         "url": "https://pokeapi.co/api/v2/pokemon-habitat/2/",
@@ -1080,3 +1080,5 @@
         }
     ]
 }
+
+module.exports = obj;

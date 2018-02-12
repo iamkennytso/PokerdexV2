@@ -24,12 +24,18 @@ class App extends React.Component {
 
   componentDidMount() {
     axios.get('/testData')
-    .then((response)=> {
-      this.setState({
-        pokemon: response.data,
-        blink: response.data.type1
+      .then((payload)=> {
+        this.setState({
+          pokemon: payload.data,
+          blink: payload.data.type1
+        })
+        axios.get('/testData2')
+          .then((payload2) => {
+            this.setState({
+              pokemon: Object.assign(this.state.pokemon, payload2.data)
+            })
+          })
       })
-    })
   }
   onChangeSearchTerm(e) {
     this.setState({ searchTerm: e.target.value })
