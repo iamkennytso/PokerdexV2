@@ -1,5 +1,6 @@
 const axios  = require ('axios');
 const testData = require('./testData.js')
+const testData2 = require('./testData2.js')
 const pokeNumber = require('./pokeNumber.js')
 
 const formatData = (data) => {
@@ -12,7 +13,7 @@ const formatData = (data) => {
   obj.height = (data.height / 10)
   obj.weight = (data.weight / 10)
   obj.type1 = data.types[0].type.name.toUpperCase()
-  if (data.types[1]) obj.type2=data.types[1].type.name.toUpperCase()
+  if (data.types[1]) obj.type2 = data.types[1].type.name.toUpperCase()
   data.stats.map( (x)=> {
     name = x.stat.name
     obj[name] = x.base_stat;
@@ -29,7 +30,10 @@ const formatData = (data) => {
 exports.testData = (req, res) => {
   res.send(formatData(testData))
 }
-
+exports.testData2 = (req, res) => {
+  const obj = {};
+  obj.flavor
+}
 exports.searchPoke = (req, res) => {
   let searchID;
   if (isNaN(Number(req.body.searchTerm))) {
@@ -38,12 +42,18 @@ exports.searchPoke = (req, res) => {
     searchID = req.body.searchTerm
   }
   axios.get(`http://pokeapi.co/api/v2/pokemon/${searchID}`)
-    .then(response => {
-      console.log(response.data.name)
-      res.send(formatData(response.data))
+    .then(payload => {
+      console.log(`Received ${payload.data.name} data`)
+      res.send(formatData(payload.data))
   })
 }
 
+exports.flavorPoke = (req, res) => {
+  axios.get(`http://pokeapi.co/api/v2/pokemon-species/${searchID}`)
+    .then(payload => {
+
+    })
+}
 // let pokeAbilObj = pokeAbilInfo(body.abilities)
 // async problems, outta scope
 // pokeAbilInfo = (abil, cb) => {
