@@ -32,8 +32,8 @@ exports.testData = (req, res) => {
 }
 exports.testData2 = (req, res) => {
   const obj = {};
-  obj.flavor = testData2.flavor_text_entries.filter(text => text.language.name === 'en')
-  obj.genus = testData2.genera.filter(poke => poke.language.name === 'en')
+  obj.flavor = testData2.flavor_text_entries.filter(text => text.language.name === 'en' && text.version.name === 'moon')[0]['flavor_text']
+  obj.genus = testData2.genera.filter(poke => poke.language.name === 'en')[0].genus
   res.send(obj)
 }
 exports.searchPoke = (req, res) => {
@@ -50,9 +50,12 @@ exports.searchPoke = (req, res) => {
   })
 }
 
-// exports.flavorPoke = (req, res) => {
-//   axios.get(`http://pokeapi.co/api/v2/pokemon-species/${searchID}`)
-//     .then(payload => {
-
-//     })
-// }
+exports.flavorPoke = (req, res) => {
+  axios.get(`http://pokeapi.co/api/v2/pokemon-species/${searchID}`)
+    .then(payload => {
+      const obj = {};
+      obj.flavor = payload.flavor_text_entries.filter(text => text.language.name === 'en' && text.version.name === 'moon')[0]['flavor_text']
+      obj.genus = payload.genera.filter(poke => poke.language.name === 'en')[0].genus
+      res.send(obj)
+    })
+}
