@@ -2,20 +2,18 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import axios from 'axios';
 import Chart from './chart.jsx'
-import Blink from './blink.jsx'
-import ChangeType1 from './changeType1.jsx'
-import ChangeType2 from './changeType2.jsx'
+import Blink from './components/Blink.jsx'
+import SearchBar from './components/SearchBar.jsx'
+import ChangeType from './components/changeType.jsx'
 import fire from './firebase.jsx'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemon: {name:'Hello World', type1:'meh', type2: 'meh'},
-      searchTerm: '',
+      pokemon: {name:'Hello World', type1:'Loading', type2: 'Test Data'},
       blink: ''
     }
-    this.onChangeSearchTerm = this.onChangeSearchTerm.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.changeType1 = this.changeType1.bind(this)
     this.changeType2 = this.changeType2.bind(this)
@@ -36,9 +34,6 @@ class App extends React.Component {
           })
       })
   }
-  onChangeSearchTerm(e) {
-    this.setState({ searchTerm: e.target.value })
-  }
   changeType1 () {
     this.setState({
       blink: this.state.pokemon.type1
@@ -49,13 +44,16 @@ class App extends React.Component {
       blink: this.state.pokemon.type2
     }) 
   }
-  handleSearch(e) {
-    e.preventDefault();
+  handleSearch(term) {
     this.setState({ pokemon: {sprite: "imgs/loading.gif"} })
-    axios.post('/search', { searchTerm: this.state.searchTerm })
+    console.log(term)
+    axios.post('/search', { searchTerm: term })
       .then(response => {
         axios.post()
-        this.setState({ pokemon: response.data })
+        this.setState({ 
+          pokemon: response.data,
+          blink: response.data.type1
+        })
       })
   }
   render () {
@@ -78,23 +76,17 @@ class App extends React.Component {
           Spec Def: {this.state.pokemon['special-defense']}  <br/>
           Abilities: {this.state.pokemon.abl1Name} {this.state.pokemon.abl2Name} {this.state.pokemon.abl3Name}
         </div>
-        <div id="searchFormDiv">
-          <form id="searchForm" onSubmit = {this.handleSearch}>
-            <input type="text" id="searchTerm" onChange={this.onChangeSearchTerm} placeholder="Pikachu" />
-          </form>
-        </div>
+        <SearchBar search={this.handleSearch} />
         <div id="bouncingPokeball">
           <img 
             id="bouncingPokeball"
             src="imgs/bounce.gif"
-            alt="search" />
+            alt="search" 
+          />
         </div>
-        <img 
-          id="pokeSprite" 
-          src={this.state.pokemon.sprite} 
-          alt="Sprite of Pokemon" />
-        <ChangeType1 func={this.changeType1} />
-        <ChangeType2 func={this.changeType2} />
+        <img id="pokeSprite" src={this.state.pokemon.sprite} alt="PokeSprite"  />
+        <ChangeType func={this.changeType1} id='changeType1'/>
+        <ChangeType func={this.changeType2} id='changeType2'/>
       </div>
     )
   }

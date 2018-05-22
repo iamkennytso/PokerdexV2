@@ -68,7 +68,7 @@
   width:100px;
   height:25px;
   border: 1px solid black;
-  border-radius: 1px;
+  border-radius: 15px;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
 }
@@ -86,9 +86,7 @@
   width:100px;
   height:25px;
   border: 1px solid black;
-  border-radius: 1px;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
+  border-radius: 15px;
 }
 
 @keyframes POISON {
