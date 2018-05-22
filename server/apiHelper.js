@@ -27,15 +27,24 @@ const formatData = (data) => {
   return obj;
 }
 
+const formatData2 = (data) => {
+  const obj = {};
+  if(data.flavor_text_entries.filter(text => text.language.name === 'en' && text.version.name === 'moon')[0]){
+    obj.flavor = data.flavor_text_entries.filter(text => text.language.name === 'en' && text.version.name === 'moon')[0]['flavor_text']
+  } else {
+    obj.flavor = data.flavor_text_entries.filter(text => text.language.name === 'en' && text.version.name === 'x')[0]['flavor_text']
+  }
+  obj.genus = data.genera.filter(poke => poke.language.name === 'en')[0].genus
+  return obj
+}
+
 exports.testData = (req, res) => {
   res.send(formatData(testData))
 }
 exports.testData2 = (req, res) => {
-  const obj = {};
-  obj.flavor = testData2.flavor_text_entries.filter(text => text.language.name === 'en' && text.version.name === 'moon')[0]['flavor_text']
-  obj.genus = testData2.genera.filter(poke => poke.language.name === 'en')[0].genus
-  res.send(obj)
+  res.send(formatData2(testData2))
 }
+
 exports.searchPoke = (req, res) => {
   let searchID;
   if (isNaN(Number(req.body.searchTerm))) {
@@ -46,16 +55,22 @@ exports.searchPoke = (req, res) => {
   axios.get(`http://pokeapi.co/api/v2/pokemon/${searchID}`)
     .then(payload => {
       console.log(`Received ${payload.data.name} data`)
-      res.send(formatData(payload.data))
+      axios.get(`http://pokeapi.co/api/v2/pokemon-species/${searchID}`)
+        .then(payload2 => {
+          console.log(formatData2(payload2.data))
+          console.log()
+          res.send(Object.assign(formatData(payload.data), formatData2(payload2.data)))
+        })
+      
   })
 }
 
-exports.flavorPoke = (req, res) => {
-  axios.get(`http://pokeapi.co/api/v2/pokemon-species/${searchID}`)
-    .then(payload => {
-      const obj = {};
-      obj.flavor = payload.flavor_text_entries.filter(text => text.language.name === 'en' && text.version.name === 'moon')[0]['flavor_text']
-      obj.genus = payload.genera.filter(poke => poke.language.name === 'en')[0].genus
-      res.send(obj)
-    })
-}
+// exports.flavorPoke = (req, res) => {
+//   axios.get(`http://pokeapi.co/api/v2/pokemon-species/${searchID}`)
+//     .then(payload => {
+//       const obj = {};
+//       obj.flavor = payload.flavor_text_entries.filter(text => text.language.name === 'en' && text.version.name === 'moon')[0]['flavor_text']
+//       obj.genus = payload.genera.filter(poke => poke.language.name === 'en')[0].genus
+//       res.send(obj)
+//     })
+// }

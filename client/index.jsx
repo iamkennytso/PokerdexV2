@@ -6,7 +6,6 @@ import Blink from './blink.jsx'
 import ChangeType1 from './changeType1.jsx'
 import ChangeType2 from './changeType2.jsx'
 import fire from './firebase.jsx'
-import Auth from './auth.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -55,6 +54,7 @@ class App extends React.Component {
     this.setState({ pokemon: {sprite: "imgs/loading.gif"} })
     axios.post('/search', { searchTerm: this.state.searchTerm })
       .then(response => {
+        axios.post()
         this.setState({ pokemon: response.data })
       })
   }
