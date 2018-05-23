@@ -24,8 +24,15 @@ const view = (props) => {
         {props.pokemon.abl2Name} <br/>
         {props.pokemon.abl3Name} <br/>
       </div>
-      :
-      <Chart stats={props.pokemon}/> }
+      : props.page == 2 ? 
+      <div>
+        ID: {props.pokemon.ID} Name: {props.pokemon.name}  <br/>
+        Genus: {props.pokemon.genus} <br/>
+        Habitat: {props.pokemon.habitat} <br/>
+        Body Shape: <img src={`imgs/shapes/${props.pokemon.shape}.png`} alt={props.pokemon.shape} /> <br/><br/>
+        {props.pokemon.flavor}
+      </div> :
+      <div id="statsRadar"><Chart stats={props.pokemon}/></div> }
   </div>
   )
 }

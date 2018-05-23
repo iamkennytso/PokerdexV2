@@ -28,14 +28,12 @@ const Chart = (props) => {
     }
   }
   return (
-    <div id="statsRadar">
-      <Radar 
-        width={300}
-        height={300}
-        data={data}
-        options={options}
-      />
-    </div>
+    <Radar 
+      width={300}
+      height={300}
+      data={data}
+      options={options}
+    />
   )
 }
 
