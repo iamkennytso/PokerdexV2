@@ -50,6 +50,9 @@
   border: 1px solid black;
   border-radius: 15px;
 }
+#changeType1Button:hover{
+  box-shadow: 2px 2px 2px black
+}
 
 #changeType2{
   grid-column: 4/5;
@@ -65,7 +68,9 @@
   border: 1px solid black;
   border-radius: 15px;
 }
-
+#changeType2Button:hover{
+  box-shadow: 2px 2px 2px black
+}
 #searchFormDiv{
   grid-column: 4/5;
   grid-row: 7/8;
