@@ -9,7 +9,6 @@ class searchBar extends React.Component {
     this.onChangeSearchTerm = this.onChangeSearchTerm.bind(this)
   }
   onChangeSearchTerm(e) {
-    console.log('hello')
     this.setState({ searchTerm: e.target.value })
   }
   render(){

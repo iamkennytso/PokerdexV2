@@ -7,6 +7,8 @@ import PokeSprite from './components/PokeSprite.jsx'
 import PokeWindow from './components/PokeWindow.jsx'
 import ChangeType from './components/changeType.jsx'
 import SearchBar from './components/SearchBar.jsx'
+import LeftD from './components/LeftDButton.jsx'
+import RightD from './components/RightDButton.jsx'
 import fire from './firebase.jsx'
 
 class App extends React.Component {
@@ -88,20 +90,8 @@ class App extends React.Component {
         </div>
         <ChangeType func={this.changeType1} id='changeType1'/>
         <ChangeType func={this.changeType2} id='changeType2'/>
-        <div id="pageDown" onClick={this.pageDown} > 
-          <img 
-          src={`imgs/leftD${this.state.hover === 'left' ? 'Hover' : ''}.png`} 
-          onMouseEnter={()=>this.setState({hover:'left'})} 
-          onMouseLeave={()=>this.setState({hover:''})} 
-          alt="left" /> 
-        </div>
-        <div id="pageUp" onClick={this.pageUp} > 
-          <img 
-          src={`imgs/rightD${this.state.hover === 'right' ? 'Hover' : ''}.png`} 
-          onMouseEnter={()=>this.setState({hover:'right'})} 
-          onMouseLeave={()=>this.setState({hover:''})} 
-          alt="right" /> 
-        </div>
+        <LeftD curr={this.state.page} page={(page) => this.setState({page})} />
+        <RightD curr={this.state.page} page={(page) => this.setState({page})} />
       </div>
     )
   }
