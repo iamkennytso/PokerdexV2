@@ -5,7 +5,7 @@ import axios from 'axios';
 import Blink from './components/Blink.jsx'
 import PokeSprite from './components/PokeSprite.jsx'
 import PokeWindow from './components/PokeWindow.jsx'
-import ChangeType from './components/changeType.jsx'
+import ChangeType from './components/ChangeType.jsx'
 import SearchBar from './components/SearchBar.jsx'
 import LeftD from './components/LeftDButton.jsx'
 import RightD from './components/RightDButton.jsx'

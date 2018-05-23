@@ -1,6 +1,6 @@
 import React from 'react';
 import {Radar} from 'react-chartjs-2';
-import Chart from './chart.jsx'
+import Chart from './Chart.jsx'
 
 const view = (props) => {  
   const spriteLink = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
