@@ -71,9 +71,6 @@ class App extends React.Component {
         <PokeSprite sprite={this.state.pokemon.sprite} page={this.state.page} />
         <PokeWindow pokemon={this.state.pokemon} page={this.state.page} search={this.handleSearch}/>
         <SearchBar search={this.handleSearch} /> 
-        <div id="bouncingPokeball">
-          <img id="bouncingPokeball" src="imgs/bounce.gif" alt="search" />
-        </div>
         <ChangeType func={this.changeType1} id='changeType1'/>
         <ChangeType func={this.changeType2} id='changeType2'/>
         <LeftD curr={this.state.page} page={(page) => this.setState({page})} />

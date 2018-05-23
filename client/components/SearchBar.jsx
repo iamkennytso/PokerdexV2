@@ -21,6 +21,7 @@ class searchBar extends React.Component {
           }
         }>
           <input type="text" id="searchTerm" onChange={(e) => this.onChangeSearchTerm(e)} placeholder="Pikachu" />
+          <img id="bouncingPokeball" onClick={() => this.props.search(this.state.searchTerm)} src="imgs/bounce.gif" alt="search" />
         </form>
       </div>  
     )

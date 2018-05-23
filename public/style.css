@@ -82,18 +82,23 @@
   margin-top: 105px;
   margin-left: 20px;
 }
+#searchForm{
+  display:flex
+}
 #searchTerm{
   height: 50px;
-  width: 170px;
+  width: 155px;
   font-size: 16px;
+  background-color:transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  z-index: 2;
 }
 #bouncingPokeball{
   height: 42px;
   width: 56px;
-  grid-column: 4/5;
-  grid-row: 6/7;
-  margin-top: 133px;
-  margin-left: 92px;
+  margin-top: 8px;
 }
 
 #leftD{
