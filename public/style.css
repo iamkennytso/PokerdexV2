@@ -91,6 +91,14 @@
   margin-left: 92px;
 }
 
+#pageDown{
+  height: 60px;
+  width: 60px; 
+  margin-top: 42px;
+  margin-left: 22px;
+  grid-column:5/6;
+  grid-row: 7/8;
+}
 #pageUp{
   height: 60px;
   width: 60px; 

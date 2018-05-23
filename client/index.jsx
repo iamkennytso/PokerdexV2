@@ -20,6 +20,7 @@ class App extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.changeType1 = this.changeType1.bind(this)
     this.changeType2 = this.changeType2.bind(this)
+    this.pageDown = this.pageDown.bind(this)
     this.pageUp = this.pageUp.bind(this)
   }
 
@@ -60,6 +61,13 @@ class App extends React.Component {
         })
       })
   }
+  pageDown(){
+    let newPage = this.state.page
+    newPage === 1 ? newPage = 3 : newPage--
+    this.setState({
+      page: newPage
+    })
+  }
   pageUp(){
     let newPage = this.state.page
     newPage === 3 ? newPage = 1 : newPage++
@@ -80,6 +88,13 @@ class App extends React.Component {
         </div>
         <ChangeType func={this.changeType1} id='changeType1'/>
         <ChangeType func={this.changeType2} id='changeType2'/>
+        <div id="pageDown" onClick={this.pageDown} > 
+          <img 
+          src={`imgs/leftD${this.state.hover === 'left' ? 'Hover' : ''}.png`} 
+          onMouseEnter={()=>this.setState({hover:'left'})} 
+          onMouseLeave={()=>this.setState({hover:''})} 
+          alt="left" /> 
+        </div>
         <div id="pageUp" onClick={this.pageUp} > 
           <img 
           src={`imgs/rightD${this.state.hover === 'right' ? 'Hover' : ''}.png`} 
