@@ -22,8 +22,6 @@ class App extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.changeType1 = this.changeType1.bind(this)
     this.changeType2 = this.changeType2.bind(this)
-    this.pageDown = this.pageDown.bind(this)
-    this.pageUp = this.pageUp.bind(this)
   }
 
   componentDidMount() {
@@ -63,20 +61,7 @@ class App extends React.Component {
         })
       })
   }
-  pageDown(){
-    let newPage = this.state.page
-    newPage === 1 ? newPage = 3 : newPage--
-    this.setState({
-      page: newPage
-    })
-  }
-  pageUp(){
-    let newPage = this.state.page
-    newPage === 3 ? newPage = 1 : newPage++
-    this.setState({
-      page: newPage
-    })
-  }
+
   render () {
     return (
       <div id="pokemonPage">
