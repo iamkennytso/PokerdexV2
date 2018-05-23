@@ -21,6 +21,11 @@
   animation-iteration-count: infinite;
 }
 
+#pokeSprite{
+  grid-column: 5/6;
+  grid-row: 4/5;
+}
+
 #pokeData{
   grid-column:4/6;
   grid-row:4/6;

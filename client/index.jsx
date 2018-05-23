@@ -3,9 +3,10 @@ import ReactDom from 'react-dom';
 import axios from 'axios';
 
 import Blink from './components/Blink.jsx'
-import SearchBar from './components/SearchBar.jsx'
+import PokeSprite from './components/PokeSprite.jsx'
 import PokeWindow from './components/PokeWindow.jsx'
 import ChangeType from './components/changeType.jsx'
+import SearchBar from './components/SearchBar.jsx'
 import fire from './firebase.jsx'
 
 class App extends React.Component {
@@ -63,7 +64,7 @@ class App extends React.Component {
       <div id="pokemonPage">
         <Blink type={this.state.blink} />
         <img id="pokedex" src = "imgs/pokedex.png" alt="pokedex"></img> 
-        <img id="pokeSprite" src={this.state.pokemon.sprite} alt="PokeSprite"  />
+        <PokeSprite sprite={this.state.pokemon.sprite} page={this.state.page} />
         <PokeWindow pokemon={this.state.pokemon} page={this.state.page}/>
         <SearchBar search={this.handleSearch} /> 
         <div id="bouncingPokeball">
