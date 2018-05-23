@@ -20,6 +20,7 @@ class App extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.changeType1 = this.changeType1.bind(this)
     this.changeType2 = this.changeType2.bind(this)
+    this.pageUp = this.pageUp.bind(this)
   }
 
   componentDidMount() {
@@ -59,11 +60,18 @@ class App extends React.Component {
         })
       })
   }
+  pageUp(){
+    let newPage = this.state.page
+    newPage === 3 ? newPage = 1 : newPage++
+    this.setState({
+      page: newPage
+    })
+  }
   render () {
     return (
       <div id="pokemonPage">
         <Blink type={this.state.blink} />
-        <img id="pokedex" src = "imgs/pokedex.png" alt="pokedex"></img> 
+        <img id="pokedex" src="imgs/pokedex.png" alt="pokedex"></img> 
         <PokeSprite sprite={this.state.pokemon.sprite} page={this.state.page} />
         <PokeWindow pokemon={this.state.pokemon} page={this.state.page}/>
         <SearchBar search={this.handleSearch} /> 
@@ -72,6 +80,13 @@ class App extends React.Component {
         </div>
         <ChangeType func={this.changeType1} id='changeType1'/>
         <ChangeType func={this.changeType2} id='changeType2'/>
+        <div id="pageUp" onClick={this.pageUp} > 
+          <img 
+          src={`imgs/rightD${this.state.hover === 'right' ? 'Hover' : ''}.png`} 
+          onMouseEnter={()=>this.setState({hover:'right'})} 
+          onMouseLeave={()=>this.setState({hover:''})} 
+          alt="right" /> 
+        </div>
       </div>
     )
   }
