@@ -35,7 +35,7 @@ const formatData2 = (data) => {
   } else {
     obj.flavor = data.flavor_text_entries.filter(text => text.language.name === 'en' && text.version.name === 'x')[0]['flavor_text']
   }
-  obj.habitat = data.habitat.name.charAt(0).toUpperCase() + data.habitat.name.substr(1)
+  obj.habitat = data.habitat ? data.habitat.name.charAt(0).toUpperCase() + data.habitat.name.substr(1) : 'Unknown'
   obj.shape = data.shape.name
   obj.genus = data.genera.filter(poke => poke.language.name === 'en')[0].genus
   return obj
