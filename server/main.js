@@ -14,4 +14,5 @@ app.listen(port, function() {
 
 app.get('/testData', apiCall.testData)
 app.get('/testData2', apiCall.testData2)
+app.get('/testData3', apiCall.testData3)
 app.post('/search', apiCall.searchPoke) 

@@ -26,16 +26,19 @@ class App extends React.Component {
 
   componentDidMount() {
     axios.get('/testData')
-      .then((payload)=> {
+      .then(payload1 => {
         this.setState({
-          pokemon: payload.data,
-          blink: payload.data.type1
+          blink: payload1.data.type1
         })
         axios.get('/testData2')
-          .then((payload2) => {
-            this.setState({
-              pokemon: Object.assign(this.state.pokemon, payload2.data)
-            })
+          .then(payload2 => {
+            axios.get('/testData3')
+              .then(payload3 => {
+                console.log(payload3.data)
+                this.setState({
+                  pokemon: Object.assign(payload1.data, payload2.data, payload3.data)
+                })
+              })
           })
       })
   }

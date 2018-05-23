@@ -1,6 +1,7 @@
 const axios  = require ('axios');
 const testData = require('./testData.js')
 const testData2 = require('./testData2.js')
+const testData3 = require('./testData3.js')
 const pokeNumber = require('./pokeNumber.js')
 
 const formatData = (data) => {
@@ -34,7 +35,35 @@ const formatData2 = (data) => {
   } else {
     obj.flavor = data.flavor_text_entries.filter(text => text.language.name === 'en' && text.version.name === 'x')[0]['flavor_text']
   }
+  obj.habitat = data.habitat.name.charAt(0).toUpperCase() + data.habitat.name.substr(1)
+  obj.shape = data.shape.name
   obj.genus = data.genera.filter(poke => poke.language.name === 'en')[0].genus
+  return obj
+}
+
+const sliceID = (string) => {
+  string = string.split('')
+  string.pop()
+  string = string.join('')
+  ind = string.lastIndexOf('/')
+  return(string.slice(ind+1))
+}
+const formatData3 = (data) => {
+  const obj = {chain:[[],[],[]]};
+  obj.chain[0].push(sliceID(data.chain.species.url))
+  console.log(obj)
+  console.log('break')
+  console.log(data.chain.evolves_to)
+  if(data.chain.evolves_to[0]){
+    for (let i = 0; i < data.chain.evolves_to.length; i++){
+      obj.chain[1].push(sliceID(data.chain.evolves_to[i].species.url))
+      if(data.chain.evolves_to[i].evolves_to[0]){
+        for (let j = 0; j < data.chain.evolves_to[i].evolves_to.length; j++){
+          obj.chain[2].push(sliceID(data.chain.evolves_to[i].evolves_to[j].species.url))
+        }
+      }
+    }
+  }
   return obj
 }
 
@@ -43,6 +72,9 @@ exports.testData = (req, res) => {
 }
 exports.testData2 = (req, res) => {
   res.send(formatData2(testData2))
+}
+exports.testData3 = (req, res) => {
+  res.send(formatData3(testData3))
 }
 
 exports.searchPoke = (req, res) => {
