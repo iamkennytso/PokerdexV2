@@ -1,17 +1,18 @@
 import React from 'react';
 import {Radar} from 'react-chartjs-2';
+import typeColor from './../util/typeColor.js'
 
 const Chart = (props) => {
   const data = {
     labels: ['HP', 'Attack', 'Defense', 'Speed','Sp. Def', 'Sp. Atk'],
     datasets: [{
       label: props.stats.name,
-      backgroundColor: 'rgba(179,181,198,0.2)',
-      borderColor: 'rgba(179,181,198,1)',
-      pointBackgroundColor: 'rgba(179,181,198,1)',
-      pointBorderColor: '#fff',
+      backgroundColor: typeColor(props.type)[0], //red
+      borderColor: typeColor(props.type)[1], //blue
+      pointBackgroundColor: typeColor(props.type)[2], //green
+      pointBorderColor: '#fff', //yellow
       pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(179,181,198,1)',
+      pointHoverBorderColor: '#000', 
       data: [props.stats.hp, props.stats.attack, props.stats.defense, props.stats.speed, 
         props.stats['special-defense'], props.stats['special-attack']]
     }]

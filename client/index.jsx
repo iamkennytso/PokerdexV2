@@ -69,7 +69,7 @@ class App extends React.Component {
         <Blink type={this.state.blink} />
         <img id="pokedex" src="imgs/pokedex.png" alt="pokedex"></img> 
         <PokeSprite sprite={this.state.pokemon.sprite} page={this.state.page} />
-        <PokeWindow pokemon={this.state.pokemon} page={this.state.page} search={this.handleSearch}/>
+        <PokeWindow pokemon={this.state.pokemon} page={this.state.page} search={this.handleSearch} type={this.state.blink} />
         <SearchBar search={this.handleSearch} /> 
         <ChangeType func={this.changeType1} id='changeType1'/>
         <ChangeType func={this.changeType2} id='changeType2'/>

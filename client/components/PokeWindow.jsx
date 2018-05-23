@@ -50,7 +50,7 @@ const view = (props) => {
           : null}
         </div>
       </div> 
-      : <div id="statsRadar"><Chart stats={props.pokemon}/></div> }
+      : <div id="statsRadar"><Chart stats={props.pokemon} type={props.type} /></div> }
   </div>
   )
 }
