@@ -34,7 +34,6 @@ class App extends React.Component {
           .then(payload2 => {
             axios.get('/testData3')
               .then(payload3 => {
-                console.log(payload3.data)
                 this.setState({
                   pokemon: Object.assign(payload1.data, payload2.data, payload3.data)
                 })
@@ -53,8 +52,7 @@ class App extends React.Component {
     }) 
   }
   handleSearch(term) {
-    this.setState({ pokemon: {sprite: "imgs/loading.gif"} })
-    console.log(term)
+    this.setState({ pokemon: {sprite: "imgs/loading.gif", chain:[], shape: "loading"} })
     axios.post('/search', { searchTerm: term })
       .then(response => {
         axios.post()
@@ -71,7 +69,7 @@ class App extends React.Component {
         <Blink type={this.state.blink} />
         <img id="pokedex" src="imgs/pokedex.png" alt="pokedex"></img> 
         <PokeSprite sprite={this.state.pokemon.sprite} page={this.state.page} />
-        <PokeWindow pokemon={this.state.pokemon} page={this.state.page}/>
+        <PokeWindow pokemon={this.state.pokemon} page={this.state.page} search={this.handleSearch}/>
         <SearchBar search={this.handleSearch} /> 
         <div id="bouncingPokeball">
           <img id="bouncingPokeball" src="imgs/bounce.gif" alt="search" />

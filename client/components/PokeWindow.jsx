@@ -3,9 +3,10 @@ import {Radar} from 'react-chartjs-2';
 import Chart from './chart.jsx'
 
 const view = (props) => {  
+  const spriteLink = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
   return (
     <div id="pokeData">
-      {props.page == 1 ? 
+      { props.page == 1 ? 
       <div>
         ID: {props.pokemon.ID} Name: {props.pokemon.name}  <br/>
         Hgt: {props.pokemon.height} m  &nbsp; 
@@ -31,8 +32,25 @@ const view = (props) => {
         Habitat: {props.pokemon.habitat} <br/>
         Body Shape: <img src={`imgs/shapes/${props.pokemon.shape}.png`} alt={props.pokemon.shape} /> <br/><br/>
         {props.pokemon.flavor}
-      </div> :
-      <div id="statsRadar"><Chart stats={props.pokemon}/></div> }
+        <div id="evoDiv">
+          {props.pokemon.chain[0] ? 
+          <div> {props.pokemon.chain[0].map(evo => {
+            return <img onClick={() => props.search(evo)} key={evo} src={`${spriteLink}${evo}.png`} alt={evo}/>
+          } )} </div> 
+          : null}
+          {props.pokemon.chain[1] ? 
+          <div> {props.pokemon.chain[1].map(evo => {
+            return <img onClick={() => props.search(evo)} key={evo} src={`${spriteLink}${evo}.png`} alt={evo}/>
+          } )} </div> 
+          : null}
+          {props.pokemon.chain[2] ? 
+          <div> {props.pokemon.chain[2].map(evo => {
+            return <img onClick={() => props.search(evo)} key={evo} src={`${spriteLink}${evo}.png`} alt={evo}/>
+          } )} </div> 
+          : null}
+        </div>
+      </div> 
+      : <div id="statsRadar"><Chart stats={props.pokemon}/></div> }
   </div>
   )
 }

@@ -51,9 +51,6 @@ const sliceID = (string) => {
 const formatData3 = (data) => {
   const obj = {chain:[[],[],[]]};
   obj.chain[0].push(sliceID(data.chain.species.url))
-  console.log(obj)
-  console.log('break')
-  console.log(data.chain.evolves_to)
   if(data.chain.evolves_to[0]){
     for (let i = 0; i < data.chain.evolves_to.length; i++){
       obj.chain[1].push(sliceID(data.chain.evolves_to[i].species.url))
@@ -86,14 +83,13 @@ exports.searchPoke = (req, res) => {
   }
   axios.get(`http://pokeapi.co/api/v2/pokemon/${searchID}`)
     .then(payload => {
-      console.log(`Received ${payload.data.name} data`)
       axios.get(`http://pokeapi.co/api/v2/pokemon-species/${searchID}`)
         .then(payload2 => {
-          console.log(formatData2(payload2.data))
-          console.log()
-          res.send(Object.assign(formatData(payload.data), formatData2(payload2.data)))
+          axios.get(payload2.data.evolution_chain.url)
+            .then(payload3 => {
+              res.send(Object.assign(formatData(payload.data), formatData2(payload2.data), formatData3(payload3.data)))
+            })
         })
-      
   })
 }
 
